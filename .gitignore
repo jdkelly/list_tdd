@@ -2,6 +2,5 @@ db.sqlite3
 geckodriver.log
 TDD_Superlist.iml
 .idea
-__pycache__/*
-/__pycache__/*
+__pycache__
 *.pyc
