@@ -12,6 +12,11 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
+    def check_for_row_in_list_table(self, row_text):
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn(row_text, [row.text for row in rows])
+
     def test_start_retrieve_list(self):
         # User navigates to to-do list homepage
         self.browser.get('http://localhost:8000')
@@ -35,10 +40,7 @@ class NewVisitorTest(unittest.TestCase):
         # User presses enter, the page now lists '1: Buy test item 1'
         input_box.send_keys(Keys.ENTER)
         time.sleep(2)
-
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn('1: Buy test item 1', [row.text for row in rows])
+        self.check_for_row_in_list_table('1: Buy test item 1')
 
         # User is still presented with a prompt to add a to-do item
         # User types 'Buy test item 2' into a text box
@@ -47,11 +49,8 @@ class NewVisitorTest(unittest.TestCase):
         input_box.send_keys('Buy test item 2')
         input_box.send_keys(Keys.ENTER)
         time.sleep(2)
-
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn('1: Buy test item 1', [row.text for row in rows])
-        self.assertIn('2: Buy test item 2', [row.text for row in rows])
+        self.check_for_row_in_list_table('1: Buy test item 1')
+        self.check_for_row_in_list_table('2: Buy test item 2')
 
         # User confirms that the site has generated a unique url
 
