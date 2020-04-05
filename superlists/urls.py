@@ -18,5 +18,6 @@ from django.conf.urls import url
 from lists import views
 
 urlpatterns = [
-    url('^$', views.home_page, name='home')
+    url('^$', views.home_page, name='home'),
+    url('^lists/unique-list/$', views.view_list, name='view_list'),
 ]
