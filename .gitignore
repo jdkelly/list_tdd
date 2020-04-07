@@ -6,3 +6,4 @@ TDD_Superlist.iml
 __pycache__
 *.pyc
 venv
+/static
