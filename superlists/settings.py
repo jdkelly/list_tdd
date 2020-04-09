@@ -26,17 +26,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 DEBUG = env('DEBUG')
-SECRET_KEY = env('SECRET_KEY')
-ALLOWED_HOSTS = [env('SITENAME')]
 
-# if DEBUG:
-#     DEBUG = True
-#     SECRET_KEY = 'k%gylq8^mr1rlu75b**2kguu=2ka%-i=c)6k0$pf3@bwnta&__'
-#     ALLOWED_HOSTS = []
-# else:
-#     assert 'SECRET_KEY' in os.environ, 'Set SECRET_KEY!'
-#     SECRET_KEY = os.environ['SECRET_KEY']
-#     ALLOWED_HOSTS = [os.environ['SITENAME']]
+
+if DEBUG:
+    SECRET_KEY = 'k%gylq8^mr1rlu75b**2kguu=2ka%-i=c)6k0$pf3@bwnta&__'
+    ALLOWED_HOSTS = []
+else:
+    SECRET_KEY = env('SECRET_KEY')
+    ALLOWED_HOSTS = [env('SITENAME')]
 
 # Application definition
 
