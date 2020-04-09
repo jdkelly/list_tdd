@@ -31,14 +31,14 @@ def _update_virtualenv():
 
 
 def _create_or_update_dotenv():
-    append('.env', 'DEBUG=False')
-    append('.env', f'SITENAME={env.host}')
+    append('./superlists/.env', 'DEBUG=False')
+    append('./superlists/.env', f'SITENAME={env.host}')
     current_contents = run('cat .env')
     if 'SECRET_KEY' not in current_contents:
         new_secret = ''.join(random.SystemRandom().choices(
             'abcdefghijklmnopqrstuvwxyz0123456789', k=50
         ))
-        append('.env', f'SECRET_KEY={new_secret}')
+        append('./superlists/.env', f'SECRET_KEY={new_secret}')
 
 
 def _update_static_files():
