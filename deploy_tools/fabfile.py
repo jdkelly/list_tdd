@@ -42,8 +42,8 @@ def _create_or_update_dotenv():
 
 
 def _update_static_files():
-    run('/venv/bin/python manage.py collectstatic --noinput')
+    run('./venv/bin/python manage.py collectstatic --noinput')
 
 
 def _update_database():
-    run('/venv/bin/python manage.py migrate --noinput')
+    run('./venv/bin/python manage.py migrate --noinput')
