@@ -1,12 +1,14 @@
 [Unit]
-Description = Gunicorn server for DOMAIN
+Description=Gunicorn server for DOMAIN
 
 [Service]
-Restart = on-failure
-User = jamesk
-WorkingDirectory = /home/jamesk/sites/DOMAIN
-EnvironmentFile = /home/jamesk/sites/DOMAIN/.env
-ExecStart = /home/jamesk/sites/DOMAIN/venv/bin/gunicorn \ bind unix:/tmp/DOMAIN.socket \ superlists.wsgi:application
+Restart=on-failure
+User=jamesk
+WorkingDirectory=/home/jamesk/sites/DOMAIN
+EnvironmentFile=/home/jamesk/sites/DOMAIN/.env
+ExecStart=/home/jamesk/sites/DOMAIN/venv/bin/gunicorn \
+    --bind unix:/tmp/DOMAIN.socket \
+    superlists.wsgi:application
 
 [Install]
-WantedBy = multi-user.target
+WantedBy=multi-user.target
