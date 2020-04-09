@@ -37,3 +37,9 @@ Provisioning a new site
     ├── etc 
  
  
+ # Example of provisioning scripts
+ cat ./deploy_tools/nginx.template.conf | sed "s/DOMAIN/lists.kelytica.com/g" | sudo tee /etc/nginx/sites-available/lists.kelytica.com
+ 
+ sudo ln -s /etc/nginx/sites-available/lists.kelytica.com /etc/nginx/sites-enabled/lists.kelytica.com 
+ 
+ cat ./deploy_tools/gunicorn-systemd.template.service| sed "s/DOMAIN/lists.kelytica.com/g" | sudo tee /etc/systemd/system/gunicorn-lists.kelytica.com.service 
