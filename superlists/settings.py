@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import environ
+
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+environ.Env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,16 +25,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-DEBUG = os.environ.get('DEBUG', False)
+DEBUG = env('DEBUG')
+SECRET_KEY = env('SECRET_KEY')
+ALLOWED_HOSTS = [env('SITENAME')]
 
-if DEBUG:
-    DEBUG = True
-    SECRET_KEY = 'k%gylq8^mr1rlu75b**2kguu=2ka%-i=c)6k0$pf3@bwnta&__'
-    ALLOWED_HOSTS = []
-else:
-    assert 'SECRET_KEY' in os.environ, 'Set SECRET_KEY!'
-    SECRET_KEY = os.environ['SECRET_KEY']
-    ALLOWED_HOSTS = [os.environ['SITENAME']]
+# if DEBUG:
+#     DEBUG = True
+#     SECRET_KEY = 'k%gylq8^mr1rlu75b**2kguu=2ka%-i=c)6k0$pf3@bwnta&__'
+#     ALLOWED_HOSTS = []
+# else:
+#     assert 'SECRET_KEY' in os.environ, 'Set SECRET_KEY!'
+#     SECRET_KEY = os.environ['SECRET_KEY']
+#     ALLOWED_HOSTS = [os.environ['SITENAME']]
 
 # Application definition
 
