@@ -31,7 +31,7 @@ def _update_virtualenv():
 
 
 def _create_or_update_dotenv():
-    append('.env', DEBUG=False)
+    append('.env', 'DEBUG=False')
     append('.env', f'SITENAME={env.host}')
     current_contents = run('cat .env')
     if SECRET_KEY not in current_contents:
