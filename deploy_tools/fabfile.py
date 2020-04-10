@@ -62,7 +62,7 @@ def _update_database():
 
 
 def _create_configs():
-    run(f'cat ./deploy_tools/nginx.template.conf | sed "s/DOMAIN/{env.host}" | sudo tee /etc/nginx/sites-available/{env.host}')
+    run(f'cat ./deploy_tools/nginx.template.conf | sed "s/DOMAIN/{env.host}/g" | sudo tee /etc/nginx/sites-available/{env.host}')
     run(f'sudo ln -s /etc/nginx/sites-available/{env.host} /etc/nginx/sites-enabled/{env.host}')
     run(f'cat ./deploy_tools/gunicorn-systemd.template.service| sed "s/DOMAIN/{env.host}/g" | sudo tee /etc/systemd/system/gunicorn-{env.host}.service')
 
