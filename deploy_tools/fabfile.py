@@ -50,6 +50,7 @@ def _create_or_update_dotenv():
             'abcdefghijklmnopqrstuvwxyz0123456789', k=50
         ))
         append('superlists/.env', f'SECRET_KEY={new_secret}')
+    run('sudo cp ./superlists/.env .env')
 
 
 def _update_static_files():
